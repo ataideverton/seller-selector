@@ -47,10 +47,10 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
             <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">À Calcular</p>
             <BuyButton
               className="items-center tc w-20 br2 ph6 pv4 ma0 "
-              skuItens={BuyButton.mapCatalogItemToCart({
+              skuItems={BuyButton.mapCatalogItemToCart({
                 product,
                 selectedItem,
-                current,
+                selectedSeller: current,
                 selectedQuantity,
               })}
               available={
@@ -58,7 +58,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
                 current.commertialOffer &&
                 current.commertialOffer.AvailableQuantity > 0
               }
-              isOneClickBuy
+              isOneClickBuy={false}
               shouldAddToCart
             ></BuyButton>
           </div>
