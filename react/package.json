@@ -20,6 +20,9 @@
     "eslint-config-vtex-react": "^5.1.0",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "typescript": "3.5.2"
+    "typescript": "3.7.3",
+    "vtex.css-handles": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.css-handles@0.4.1/public/@types/vtex.css-handles",
+    "vtex.styleguide": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.103.5/public/@types/vtex.styleguide",
+    "vtex.render-runtime": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.88.0/public/@types/vtex.render-runtime"
   }
 }
