@@ -21,18 +21,19 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
         <div
           className={`${handles.sellersHeader} flex br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
         >
-          <h5 className=" ph6 pv3 t-heading-5">Loja</h5>
-          <h5 className="ph6 pv3 t-heading-5">Preço Produto</h5>
-          <h5 className="ph6 pv3 t-heading-5">Frete</h5>
-          <h5 className="ph6 pv3 t-heading-5">Preço + Frete</h5>
-          <h5 className="ph6 pv3 t-heading-5">-</h5>
+          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Loja</h5>
+          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Preço Produto</h5>
+          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Frete</h5>
+          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Preço + Frete</h5>
+          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">-</h5>
         </div>
         {selectedItem.sellers.map((current: any, index: any) => (
-          <div key={index} className={`${handles.sellersInfoBox}`}>
-            <p>{current.sellerName}</p>
-            <p>0.0</p>
-            <p>-</p>
-            <p>-</p>
+          <div key={index} className={`${handles.sellersInfoBox} flex bw2 br--bottom`}>
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">{current.sellerName}</p>
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">0.0</p>
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">-</p>
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">-</p>
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">-</p>
           </div>
         ))}
       </div>
