@@ -1,7 +1,7 @@
 import React from 'react'
-// @ts-ignore
-import useProduct from 'vtex.product-context/useProduct'
+import BuyButton from 'vtex.store-components/BuyButton'
 import { useCssHandles } from 'vtex.css-handles'
+import useProduct from 'vtex.product-context/useProduct'
 
 const SELLERS_CSS_HANDLES = [
   'sellersHeader',
@@ -10,14 +10,12 @@ const SELLERS_CSS_HANDLES = [
 ]
 
 const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
-  const { selectedItem } = useProduct()
-  console.log(selectedItem)
-  console.log(slug)
+  const { product, selectedItem, selectedQuantity } = useProduct() as any
   const handles = useCssHandles(SELLERS_CSS_HANDLES)
 
   if (selectedItem) {
     return (
-      <div>
+      <div key={slug}>
         <div
           className={`${handles.sellersHeader} flex br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
         >
@@ -30,9 +28,27 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
         {selectedItem.sellers.map((current: any, index: any) => (
           <div key={index} className={`${handles.sellersInfoBox}`}>
             <p>{current.sellerName}</p>
-            <p>0.0</p>
-            <p>-</p>
-            <p>-</p>
+            <p>{`R$ ${current.commertialOffer.Price.toString().replace(
+              '.',
+              ','
+            )}`}</p>
+            <p>À Calcular</p>
+            <p>À Calcular</p>
+            <BuyButton
+              skuItens={BuyButton.mapCatalogItemToCart({
+                product,
+                selectedItem,
+                current,
+                selectedQuantity,
+              })}
+              available={
+                current &&
+                current.commertialOffer &&
+                current.commertialOffer.AvailableQuantity > 0
+              }
+              isOneClickBuy
+              shouldAddToCart
+            ></BuyButton>
           </div>
         ))}
       </div>
