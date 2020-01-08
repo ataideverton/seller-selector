@@ -1,12 +1,14 @@
-import React from 'react'
-import { useQuery } from 'react-apollo'
+import React, { useState } from 'react'
 import BuyButton from 'vtex.store-components/BuyButton'
 import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
-import { ShippingSimulator } from 'vtex.store-components'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
+import { useApolloClient } from 'react-apollo'
+import { useRuntime } from 'vtex.render-runtime'
+import { FormattedMessage } from 'react-intl'
 
-import SimulateShipping from './queries/SimulateShipping.gql'
+import SimulateShippingQuery from './queries/SimulateShipping.gql'
+import SimulateShipping from './SimulateShipping'
 
 const SELLERS_CSS_HANDLES = [
   'sellersHeader',
@@ -15,6 +17,12 @@ const SELLERS_CSS_HANDLES = [
 ]
 
 const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
+  const client = useApolloClient()
+  const runtime = useRuntime()
+  const {
+    culture: { country, customCurrencySymbol },
+  } = runtime
+  const [shipping, setShipping] = useState<any>(null)
   const { product, selectedItem, selectedQuantity } = useProduct()
   const handles = useCssHandles(SELLERS_CSS_HANDLES)
 
@@ -26,23 +34,24 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
         seller: current.sellerId,
       })
     )
-    const variabeis = {
+    const variables = {
       shippingItems,
-      country: 'BRA',
-      postalCode: '81930615',
+      country: country,
+      postalCode: '',
     }
 
-    const { loading, error, data } = useQuery(SimulateShipping, {
-      variables: variabeis,
-    })
-
-    if (!loading && !error) {
-      console.log(data)
+    const onSimulateShipping = (postalCode: string) => {
+      client
+        .query({
+          query: SimulateShippingQuery,
+          variables: { ...variables, postalCode },
+        })
+        .then(result => setShipping(result.data.shipping))
     }
 
     return (
       <div key={slug}>
-        <ShippingSimulator skuId="12" seller="1" />
+        <SimulateShipping onSimulateShipping={onSimulateShipping} />
         <div
           className={`${handles.sellersHeader} flex br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
         >
@@ -66,61 +75,67 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
             <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
               {current.sellerName}
             </p>
-            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">{`R$ ${current.commertialOffer.Price.toString().replace(
+            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">{`${customCurrencySymbol} ${current.commertialOffer.Price.toString().replace(
               '.',
               ','
             )}`}</p>
             <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              {data !== undefined
-                ? data.shipping.logisticsInfo[index].slas.map(
-                    (sla: any, index: number) => (
-                      <p key={index}>
-                        {sla.name} R${' '}
-                        {`${(sla.price / 100.0)
-                          .toFixed(2)
-                          .toString()
-                          .replace('.', ',')}    `}
-                        <TranslateEstimate
-                          shippingEstimate={sla.shippingEstimate}
-                        />
-                      </p>
-                    )
+              {shipping ? (
+                shipping.logisticsInfo[index].slas.map(
+                  (sla: any, index: number) => (
+                    <p key={index}>
+                      {sla.name} {customCurrencySymbol}{' '}
+                      {`${(sla.price / 100.0)
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')}    `}
+                      <TranslateEstimate
+                        shippingEstimate={sla.shippingEstimate}
+                      />
+                    </p>
                   )
-                : 'À Calcular'}
+                )
+              ) : (
+                <FormattedMessage id="store/seller-list.pending" />
+              )}
             </p>
             <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              {data !== undefined
-                ? data.shipping.logisticsInfo[index].slas.map(
-                    (sla: any, index: number) => (
-                      <p key={index}>
-                        {`R$ ${(
-                          sla.price / 100.0 +
-                          current.commertialOffer.Price
-                        )
-                          .toFixed(2)
-                          .toString()
-                          .replace('.', ',')}`}
-                      </p>
-                    )
+              {shipping ? (
+                shipping.logisticsInfo[index].slas.map(
+                  (sla: any, index: number) => (
+                    <p key={index}>
+                      {`${customCurrencySymbol} ${(
+                        sla.price / 100.0 +
+                        current.commertialOffer.Price
+                      )
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')}`}
+                    </p>
                   )
-                : 'À Calcular'}
+                )
+              ) : (
+                <FormattedMessage id="store/seller-list.pending" />
+              )}
             </p>
-            <BuyButton
-              className="items-center tc w-20 br2 ph6 pv4 ma0 "
-              skuItems={BuyButton.mapCatalogItemToCart({
-                product,
-                selectedItem,
-                selectedSeller: current,
-                selectedQuantity,
-              })}
-              available={
-                current &&
-                current.commertialOffer &&
-                current.commertialOffer.AvailableQuantity > 0
-              }
-              isOneClickBuy={false}
-              shouldAddToCart
-            ></BuyButton>
+            <div className="items-center tc w-20 br2 ph6 pv4 ma0 ">
+              <BuyButton
+                className="items-center tc w-20 br2 ph6 pv4 ma0 "
+                skuItems={BuyButton.mapCatalogItemToCart({
+                  product,
+                  selectedItem,
+                  selectedSeller: current,
+                  selectedQuantity,
+                })}
+                available={
+                  current &&
+                  current.commertialOffer &&
+                  current.commertialOffer.AvailableQuantity > 0
+                }
+                isOneClickBuy={false}
+                shouldAddToCart
+              ></BuyButton>
+            </div>
           </div>
         ))}
       </div>

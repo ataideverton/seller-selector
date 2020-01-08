@@ -1,4 +1,5 @@
 {
   "admin/test": "test",
-  "store/test": "test"
+  "store/test": "test",
+  "store/seller-list.pending": "Type postal code to calculate"
 }
