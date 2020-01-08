@@ -1,11 +1,15 @@
 {
-  "store.product.sellers": {
+  "store.sellers": {
     "allowed": [
       "sellerselector",
       "vtex.store-components:product-name",
       "product-description",
       "product-images"
-    ]
+    ],
+    "around": [
+      "productWrapper"
+    ],
+    "context": "vtex.store/ProductContext"
   },
   "store.product.sellertest": {
     "allowed": [

@@ -1,5 +1,5 @@
 {
-    "store.product.sellers": {
+    "store.sellers": {
         "path": "/sellers/:slug"
     }
 }
