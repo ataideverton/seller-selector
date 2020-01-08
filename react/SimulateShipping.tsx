@@ -1,4 +1,5 @@
 import React, { useState, FC } from 'react'
+import { FormattedMessage } from 'react-intl'
 
 interface Props {
   onSimulateShipping: (a: string) => void
@@ -9,7 +10,7 @@ const SimulateShipping: FC<Props> = props => {
 
   return (
     <div>
-      <label htmlFor="postalcode">Postal Code</label>
+      <FormattedMessage id="store/seller-list.postal-code" />
       <input
         type="text"
         placeholder="Postal Code"

@@ -5489,9 +5489,9 @@ verror@1.10.0:
   version "0.0.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-components@3.98.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
-"vtex.store-graphql@https://evertongabriel--cosmetics2.myvtex.com/_v/private/typings/linked/v1/vtex.store-graphql@2.113.3+build1578451705/public/@types/vtex.store-graphql":
+"vtex.store-graphql@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-graphql@2.113.3/public/@types/vtex.store-graphql":
   version "2.113.3"
-  resolved "https://evertongabriel--cosmetics2.myvtex.com/_v/private/typings/linked/v1/vtex.store-graphql@2.113.3+build1578451705/public/@types/vtex.store-graphql#4cfd7d3a85e01f21f86a8baad8a75ea0fd14df14"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-graphql@2.113.3/public/@types/vtex.store-graphql#5518e18d243582dccc7502ced6269323615a0ce1"
 
 "vtex.store@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store@2.80.0/public/@types/vtex.store":
   version "2.80.0"

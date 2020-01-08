@@ -10,11 +10,7 @@ import { FormattedMessage } from 'react-intl'
 import SimulateShippingQuery from './queries/SimulateShipping.gql'
 import SimulateShipping from './SimulateShipping'
 
-const SELLERS_CSS_HANDLES = [
-  'sellersHeader',
-  'sellersInfoBox',
-  'buttonItemsPrice',
-]
+const SELLERS_CSS_HANDLES = ['sellersHeader', 'sellersInfoBox', 'sellerBox']
 
 const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
   const client = useApolloClient()
@@ -52,92 +48,95 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
     return (
       <div key={slug}>
         <SimulateShipping onSimulateShipping={onSimulateShipping} />
-        <div
-          className={`${handles.sellersHeader} flex br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
-        >
-          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Loja</h5>
-          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
-            Preço Produto
-          </h5>
-          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
-            Frete
-          </h5>
-          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
-            Preço + Frete
-          </h5>
-          <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">-</h5>
-        </div>
-        {selectedItem.sellers.map((current: any, index: any) => (
+        <div className={`${handles.sellerBox} mr-auto ml-auto mw9`}>
           <div
-            key={index}
-            className={`${handles.sellersInfoBox} flex bw2 br--bottom`}
+            className={`${handles.sellersHeader} mt1 justify-between-s dn-s flex-m items-center-s br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
           >
-            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              {current.sellerName}
-            </p>
-            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">{`${customCurrencySymbol} ${current.commertialOffer.Price.toString().replace(
-              '.',
-              ','
-            )}`}</p>
-            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              {shipping ? (
-                shipping.logisticsInfo[index].slas.map(
-                  (sla: any, index: number) => (
-                    <p key={index}>
-                      {sla.name} {customCurrencySymbol}{' '}
-                      {`${(sla.price / 100.0)
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')}    `}
-                      <TranslateEstimate
-                        shippingEstimate={sla.shippingEstimate}
-                      />
-                    </p>
-                  )
-                )
-              ) : (
-                <FormattedMessage id="store/seller-list.pending" />
-              )}
-            </p>
-            <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              {shipping ? (
-                shipping.logisticsInfo[index].slas.map(
-                  (sla: any, index: number) => (
-                    <p key={index}>
-                      {`${customCurrencySymbol} ${(
-                        sla.price / 100.0 +
-                        current.commertialOffer.Price
-                      )
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')}`}
-                    </p>
-                  )
-                )
-              ) : (
-                <FormattedMessage id="store/seller-list.pending" />
-              )}
-            </p>
-            <div className="items-center tc w-20 br2 ph6 pv4 ma0 ">
-              <BuyButton
-                className="items-center tc w-20 br2 ph6 pv4 ma0 "
-                skuItems={BuyButton.mapCatalogItemToCart({
-                  product,
-                  selectedItem,
-                  selectedSeller: current,
-                  selectedQuantity,
-                })}
-                available={
-                  current &&
-                  current.commertialOffer &&
-                  current.commertialOffer.AvailableQuantity > 0
-                }
-                isOneClickBuy={false}
-                shouldAddToCart
-              ></BuyButton>
-            </div>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
+              <FormattedMessage id="store/seller-list.seller" />
+            </h5>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
+              <FormattedMessage id="store/seller-list.product-price" />
+            </h5>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
+              <FormattedMessage id="store/seller-list.shipping" />
+            </h5>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
+              <FormattedMessage id="store/seller-list.shipping-and-price" />
+            </h5>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5"></h5>
           </div>
-        ))}
+          {selectedItem.sellers.map((selectedSeller: any, index: any) => (
+            <div
+              key={index}
+              className={`${handles.sellersInfoBox} justify-between-s bt-0-m b--solid-s bw1 b--muted-3 flex br--bottom items-center-s flex-column-s flex-row-m`}
+            >
+              <p className="items-center tc w-100-s w-20-m  br2 ph6 pv4 ma0 b">
+                {selectedSeller.sellerName}
+              </p>
+              <p className="items-center tc w-100-s w-20-m br2 ph6 pv4 ma0 ">{`${customCurrencySymbol} ${selectedSeller.commertialOffer.Price.toString().replace(
+                '.',
+                ','
+              )}`}</p>
+              <div className="items-center tc w-100-s w-20-m br2 ph6 pv4 ma0 w-100-s w-20-m">
+                {shipping ? (
+                  shipping.logisticsInfo[index].slas.map(
+                    (sla: any, index: number) => (
+                      <p key={index}>
+                        {sla.name} {customCurrencySymbol}{' '}
+                        {`${(sla.price / 100.0)
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')}    `}
+                        <TranslateEstimate
+                          shippingEstimate={sla.shippingEstimate}
+                        />
+                      </p>
+                    )
+                  )
+                ) : (
+                  <FormattedMessage id="store/seller-list.pending" />
+                )}
+              </div>
+              <div className="items-center tc br2 ph6 pv4 ma0 w-100-s w-20-m">
+                {shipping ? (
+                  shipping.logisticsInfo[index].slas.map(
+                    (sla: any, index: number) => (
+                      <p key={index}>
+                        {`${customCurrencySymbol} ${(
+                          sla.price / 100.0 +
+                          selectedSeller.commertialOffer.Price
+                        )
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')}`}
+                      </p>
+                    )
+                  )
+                ) : (
+                  <FormattedMessage id="store/seller-list.pending" />
+                )}
+              </div>
+              <div className="items-center tc br2 ph6 pv4 ma0 w-100-s w-20-m">
+                <BuyButton
+                  skuItens={BuyButton.mapCatalogItemToCart({
+                    product,
+                    selectedItem,
+                    selectedSeller,
+                    selectedQuantity,
+                  })}
+                  available={
+                    selectedSeller &&
+                    selectedSeller.commertialOffer &&
+                    selectedSeller.commertialOffer.AvailableQuantity > 0
+                  }
+                  isOneClickBuy
+                  shouldAddToCart
+                ></BuyButton>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     )
   } else return <></>
