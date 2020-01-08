@@ -37,7 +37,6 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
     }
 
     const onSimulateShipping = (postalCode: string) => {
-      console.log(postalCode, 'Executou')
       client
         .query({
           query: SimulateShippingQuery,
