@@ -5481,17 +5481,25 @@ verror@1.10.0:
   version "8.88.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.88.0/public/@types/vtex.render-runtime#0257088b54c76eec74477e5dd9014d5b38779ac7"
 
+"vtex.shipping-estimate-translator@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.shipping-estimate-translator@2.1.2/public/_types/react":
+  version "2.1.2"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.shipping-estimate-translator@2.1.2/public/_types/react#95629f50253d1f857f9f401f8d4c575c1ac52c99"
+
 "vtex.store-components@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-components@3.98.0/public/_types/react":
   version "0.0.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-components@3.98.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.store-graphql@https://evertongabriel--cosmetics2.myvtex.com/_v/private/typings/linked/v1/vtex.store-graphql@2.113.3+build1578451705/public/@types/vtex.store-graphql":
+  version "2.113.3"
+  resolved "https://evertongabriel--cosmetics2.myvtex.com/_v/private/typings/linked/v1/vtex.store-graphql@2.113.3+build1578451705/public/@types/vtex.store-graphql#4cfd7d3a85e01f21f86a8baad8a75ea0fd14df14"
 
 "vtex.store@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store@2.80.0/public/@types/vtex.store":
   version "2.80.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store@2.80.0/public/@types/vtex.store#e82fa1221247bbe13b01c727eb4a1821bbf3a14a"
 
-"vtex.styleguide@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.103.5/public/@types/vtex.styleguide":
-  version "9.103.5"
-  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.103.5/public/@types/vtex.styleguide#5c5ea1c7486579896849f44b4dba622655dfcaae"
+"vtex.styleguide@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.104.0/public/@types/vtex.styleguide":
+  version "9.104.0"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.104.0/public/@types/vtex.styleguide#987b927042f3bd3f6328761efc2c4c39af20e5d6"
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
