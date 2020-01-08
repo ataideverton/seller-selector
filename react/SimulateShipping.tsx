@@ -9,7 +9,7 @@ const SimulateShipping: FC<Props> = props => {
 
   return (
     <div>
-      <label>Postal Code</label>
+      <label htmlFor="postalcode">Postal Code</label>
       <input
         type="text"
         placeholder="Postal Code"

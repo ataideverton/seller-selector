@@ -1,4 +1,5 @@
 {
   "admin/test": "teste",
-  "store/test": "teste"
+  "store/test": "teste",
+  "store/seller-list.pending": "Escriba el código postal para calcular"
 }
