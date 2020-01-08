@@ -1,17 +1,21 @@
 {
-  "store.sellers": {
+  "store.product.sellers": {
     "allowed": [
       "sellerselector",
       "vtex.store-components:product-name",
       "product-description",
       "product-images"
-    ],
-    "around": [
-      "productWrapper"
-    ],
-    "context": "vtex.store/ProductContext"
+    ]
+  },
+  "store.product.sellertest": {
+    "allowed": [
+      "link-seller"
+    ]
   },
   "sellerselector": {
     "component": "SellerSelector"
+  },
+  "link-seller": {
+    "component": "LinkSeller"
   }
 }
