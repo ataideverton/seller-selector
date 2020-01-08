@@ -1,6 +1,4 @@
 {
-  "admin/test": "test",
-  "store/test": "test",
   "store/seller-list.pending": "Type postal code to calculate",
   "store/seller-list.seller": "Seller",
   "store/seller-list.product-price": "Product Price",

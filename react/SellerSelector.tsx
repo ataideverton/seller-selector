@@ -37,6 +37,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
     }
 
     const onSimulateShipping = (postalCode: string) => {
+      console.log(postalCode, 'Executou')
       client
         .query({
           query: SimulateShippingQuery,
@@ -48,7 +49,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
     return (
       <div key={slug}>
         <SimulateShipping onSimulateShipping={onSimulateShipping} />
-        <div className={`${handles.sellerBox} mr-auto ml-auto mw9`}>
+        <div className={`${handles.sellerBox} mr-auto ml-auto mw8`}>
           <div
             className={`${handles.sellersHeader} mt1 justify-between-s dn-s flex-m items-center-s br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
           >
@@ -64,7 +65,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
             <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
               <FormattedMessage id="store/seller-list.shipping-and-price" />
             </h5>
-            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5"></h5>
+            <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">-</h5>
           </div>
           {selectedItem.sellers.map((selectedSeller: any, index: any) => (
             <div
@@ -119,7 +120,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
               </div>
               <div className="items-center tc br2 ph6 pv4 ma0 w-100-s w-20-m">
                 <BuyButton
-                  skuItens={BuyButton.mapCatalogItemToCart({
+                  skuItems={BuyButton.mapCatalogItemToCart({
                     product,
                     selectedItem,
                     selectedSeller,

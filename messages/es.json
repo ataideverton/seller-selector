@@ -1,6 +1,4 @@
 {
-  "admin/test": "teste",
-  "store/test": "teste",
   "store/seller-list.pending": "Escriba el código postal para calcular",
   "store/seller-list.seller": "Vendedor",
   "store/seller-list.product-price": "Precio",

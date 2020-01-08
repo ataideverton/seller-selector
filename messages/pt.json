@@ -1,6 +1,4 @@
 {
-  "admin/test": "teste",
-  "store/test": "teste",
   "store/seller-list.pending": "Digite o CEP para calcular",
   "store/seller-list.seller": "Loja",
   "store/seller-list.product-price": "Preço Produto",
