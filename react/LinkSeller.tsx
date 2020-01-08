@@ -1,20 +1,22 @@
 import React from 'react'
 import { Link } from 'vtex.render-runtime'
+import useProduct from 'vtex.product-context/useProduct'
 
-const LinkSeller: StorefrontFunctionComponent<any> = ({ slug }) => {
-  // var urlSlug = window.location.pathname
-  // console.log(urlSlug)
+const LinkSeller: StorefrontFunctionComponent<any> = () => {
+  const { product, selectedItem } = useProduct()
 
-  return (
-    <div className="flex flex-row-reverse">
-      <Link to={`/sellers/${slug}`}>
-        <span>Verificar mais Sellers</span>
-      </Link>
-    </div>
-  )
+  if (selectedItem.sellers.length > 1) {
+    return (
+      <div className="flex flex-row-reverse">
+        <Link page="store.sellers" params={{ slug: product.linkText }}>
+          <span>Verificar demais Sellers [{selectedItem.sellers.length}]</span>
+        </Link>
+      </div>
+    )
+  }
+  return <></>
 }
 
-//This is the schema form that will render the editable props on SiteEditor
 LinkSeller.schema = {
   title: 'editor.countdown.title',
   description: 'editor.countdown.description',

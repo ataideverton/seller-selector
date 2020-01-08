@@ -1,5 +1,5 @@
 {
-    "store.product.sellers": {
+    "store.sellers": {
         "blocks": [
             "flex-layout.row#productInfo",
             "sellerselector"
