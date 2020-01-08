@@ -44,7 +44,7 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
         <ShippingSimulator skuId="12" seller="1" />
         <div className={`${handles.sellerBox} mr-auto ml-auto mw9`}>
           <div
-            className={`${handles.sellersHeader} mt1 justify-between-s flex items-center-s br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
+            className={`${handles.sellersHeader} mt1 justify-between-s dn-s flex-m items-center-s br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3`}
           >
             <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">Loja</h5>
             <h5 className="items-center tc w-20 ph6 pv4 ma0 t-heading-5">
@@ -61,16 +61,16 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
           {selectedItem.sellers.map((current: any, index: any) => (
             <div
               key={index}
-              className={`${handles.sellersInfoBox} justify-between-s bt-0 b--solid-s bw1 b--muted-3 flex br--bottom items-center-s`}
+              className={`${handles.sellersInfoBox} justify-between-s bt-0-m b--solid-s bw1 b--muted-3 flex br--bottom items-center-s flex-column-s flex-row-m`}
             >
-              <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
+              <p className="items-center tc w-100-s w-20-m  br2 ph6 pv4 ma0 b">
                 {current.sellerName}
               </p>
-              <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">{`R$ ${current.commertialOffer.Price.toString().replace(
+              <p className="items-center tc w-100-s w-20-m br2 ph6 pv4 ma0 ">{`R$ ${current.commertialOffer.Price.toString().replace(
                 '.',
                 ','
               )}`}</p>
-              <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
+              <div className="items-center tc w-100-s w-20-m br2 ph6 pv4 ma0 w-100-s w-20-m">
                 {data !== undefined
                   ? data.shipping.logisticsInfo[index].slas.map(
                     (sla: any, index: number) => (
@@ -87,8 +87,8 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
                     )
                   )
                   : 'À Calcular'}
-              </p>
-              <p className="items-center tc w-20 br2 ph6 pv4 ma0 ">
+              </div>
+              <div className="items-center tc br2 ph6 pv4 ma0 w-100-s w-20-m">
                 {data !== undefined
                   ? data.shipping.logisticsInfo[index].slas.map(
                     (sla: any, index: number) => (
@@ -104,8 +104,8 @@ const SellerSelector: StorefrontFunctionComponent<any> = ({ slug }) => {
                     )
                   )
                   : 'À Calcular'}
-              </p>
-              <div className="items-center tc br2 ph6 pv4 ma0 w-20">
+              </div>
+              <div className="items-center tc br2 ph6 pv4 ma0 w-100-s w-20-m">
                 <BuyButton
                   skuItens={BuyButton.mapCatalogItemToCart({
                     product,
