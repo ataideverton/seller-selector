@@ -1,8 +1,6 @@
-# VTEX React App Template
+# VTEX Seller Selector
 
-Our guide repository to structure for react apps, that should be used as a template.
-
-We use `yarn` as our default package manager, before coding make sure to run yarn on: `root` and `react` folders.
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 ## Description:
 
