@@ -5481,6 +5481,10 @@ verror@1.10.0:
   version "8.88.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.88.0/public/@types/vtex.render-runtime#0257088b54c76eec74477e5dd9014d5b38779ac7"
 
+"vtex.store-components@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-components@3.98.0/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-components@3.98.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
 "vtex.store@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store@2.80.0/public/@types/vtex.store":
   version "2.80.0"
   resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store@2.80.0/public/@types/vtex.store#e82fa1221247bbe13b01c727eb4a1821bbf3a14a"
